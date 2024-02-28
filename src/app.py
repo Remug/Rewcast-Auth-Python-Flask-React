@@ -7,16 +7,20 @@ from flask_migrate import Migrate
 from flask_swagger import swagger
 from flask_cors import CORS
 from api.utils import APIException, generate_sitemap
-from api.models import db
-from api.routes import api
+from api.models.users_models import db, User
+from api.routes.api import api
 from api.admin import setup_admin
 from api.commands import setup_commands
+from flask_jwt_extended import JWTManager
 
 # from models import Person
 
 ENV = "development" if os.getenv("FLASK_DEBUG") == "1" else "production"
 static_file_dir = os.path.join(os.path.dirname(os.path.realpath(__file__)), '../public/')
 app = Flask(__name__)
+app.config["JWT_SECRET_KEY"] = "super-secret"  # Change this "super secret" to something else!
+jwt = JWTManager(app)
+
 app.url_map.strict_slashes = False
 
 # database condiguration
@@ -53,19 +57,6 @@ def sitemap():
     if ENV == "development":
         return generate_sitemap(app)
     return send_from_directory(static_file_dir, 'index.html')
-
-@app.route("/users/create", methods=["GET", "POST"])
-def user_create():
-    if request.method == "POST":
-        user = User(
-            username=request.form["username"],
-            email=request.form["email"],
-        )
-        db.session.add(user)
-        db.session.commit()
-        return redirect(url_for("user_detail", id=user.id))
-
-    return render_template("user/create.html")
 
 # any other endpoint will try to serve it like a static file
 @app.route('/<path:path>', methods=['GET'])
