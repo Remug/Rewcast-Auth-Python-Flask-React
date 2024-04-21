@@ -26,7 +26,7 @@ def delete_user_by_id(id):
     user = db.get_or_404(User, id)
     db.session.delete(user)
     db.session.commit()
-    return jsonify('Se ha eliminado el usuario')
+    return jsonify({'msg': 'Se ha eliminado el usuario'})
 
 def update_user_by_id(id):
     user = db.get_or_404(User, id)
@@ -35,4 +35,4 @@ def update_user_by_id(id):
     user.email = req.get("email", user.email)
     db.session.add(user)
     db.session.commit()
-    return jsonify('Se ha editado el usuario')
+    return jsonify({'msg': 'Se ha editado el usuario'})

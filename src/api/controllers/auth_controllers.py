@@ -10,7 +10,9 @@ def login():
     user = User.query.filter_by(email=email, password=password).first()
 
     if user is None:
+        #the user was not found on the database
         return jsonify({"msg": "Bad username or password"}), 401
     
+    #create a new token with the user id inside
     access_token = create_access_token(identity=user.serialize())
     return jsonify({ "token": access_token, "user_id": user.serialize() })
