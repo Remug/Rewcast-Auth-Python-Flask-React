@@ -1,6 +1,8 @@
 from flask import request, jsonify
 from api.models.users_models import User, db
 
+
+#ruta para crear usuarios y logarse en la base de datos en el thunderclient api/auth/signup(logim)
 def create_user():
     user_request = request.json
     user = User(

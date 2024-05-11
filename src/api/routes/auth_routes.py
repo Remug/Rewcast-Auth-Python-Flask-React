@@ -11,3 +11,5 @@ def signup():
 @auth.route("/login", methods=["POST"])
 def login_route():
     return login()
+
+#ruta para crear usuarios y logarse en la base de datos en el thunderclient api/auth/signup(logim)

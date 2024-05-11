@@ -8,3 +8,5 @@ api = Blueprint('api', __name__)
 
 api.register_blueprint(users, url_prefix='/users')
 api.register_blueprint(auth, url_prefix='/auth')
+
+#ruta para crear usuarios y logarse en la base de datos en el thunderclient api/auth/signup(logim)
