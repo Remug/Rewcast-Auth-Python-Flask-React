@@ -10,3 +10,9 @@ import Layout from "./layout";
 
 //render your react application
 ReactDOM.render(<Layout />, document.querySelector("#app"));
+
+
+// instalar extension thunderclient y pegar la direccion del backend para crear usuario
+// crear usuario en la ruta api/auth/signup
+// logarse en la pagina de login
+
