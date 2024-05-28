@@ -15,12 +15,14 @@ export const Navbar = () => {
 					/>
 					</span>
         		</Link>
+				<div className="ml-auto">
+					<Link to="/demo">
+						<button className="btn btn-primary">Check the Context in action</button>
+					</Link>
+				</div>
+
 			</div>
-			<div className="pe-5 ">
-				<Link to="/login">
-					<i class="fa-solid fa-jedi "></i> LOGIN
-				</Link>
-			</div>
+			
 			
 		</nav>
 	);
